@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-Italic[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter[slnt,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono[wght].woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    /* Kerala Stone Quarry — pitch black immersive palette */
+    --background: 0 0 0;
+    --foreground: 0.902 0.013 55;
+    --card: 0.08 0.004 30;
+    --card-foreground: 0.902 0.013 55;
+    --popover: 0.1 0.005 30;
+    --popover-foreground: 0.902 0.013 55;
+    --primary: 0.48 0.09 20;
+    --primary-foreground: 0.902 0.013 55;
+    --secondary: 0.12 0.005 30;
+    --secondary-foreground: 0.75 0.01 55;
+    --muted: 0.1 0.005 30;
+    --muted-foreground: 0.55 0.01 55;
+    --accent: 0.35 0.09 20;
+    --accent-foreground: 0.902 0.013 55;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.15 0.005 30;
+    --input: 0.15 0.005 30;
+    --ring: 0.48 0.09 20;
+    --chart-1: 0.55 0.13 20;
+    --chart-2: 0.45 0.06 180;
+    --chart-3: 0.38 0.07 240;
+    --chart-4: 0.7 0.12 80;
+    --chart-5: 0.65 0.1 60;
+    --sidebar: 0.08 0.004 30;
+    --sidebar-foreground: 0.902 0.013 55;
+    --sidebar-primary: 0.48 0.09 20;
+    --sidebar-primary-foreground: 0.902 0.013 55;
+    --sidebar-accent: 0.12 0.005 30;
+    --sidebar-accent-foreground: 0.75 0.01 55;
+    --sidebar-border: 0.15 0.005 30;
+    --sidebar-ring: 0.48 0.09 20;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border;
+    cursor: none;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: #000000;
+    color: #e5e0d8;
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
