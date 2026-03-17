@@ -3,7 +3,7 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { FacultySubNav } from "../components/FacultySubNav";
 import { useActor } from "../hooks/useActor";
 
-// SIMPLIFIED: Just /cv.pdf since we moved it to the public root
+// Once Vercel root is 'frontend' and file is in 'public/cv.pdf', this is the path:
 const STATIC_CV = "/cv.pdf"; 
 const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`;
 
@@ -19,6 +19,16 @@ export function FacultyCV() {
       .catch(() => setPdfSrc(STATIC_CV))
       .finally(() => setLoading(false));
   }, [actor]);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (loading) {
+        setPdfSrc(STATIC_CV);
+        setLoading(false);
+      }
+    }, 2000); 
+    return () => clearTimeout(t);
+  }, [loading]);
 
   return (
     <div style={{ position: "relative", width: "100%", minHeight: "100dvh", backgroundColor: "#000000", display: "flex", flexDirection: "column", cursor: "none" }}>
