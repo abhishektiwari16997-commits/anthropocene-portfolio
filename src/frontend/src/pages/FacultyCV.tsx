@@ -3,8 +3,8 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { FacultySubNav } from "../components/FacultySubNav";
 import { useActor } from "../hooks/useActor";
 
-// THE FIX: Pointing exactly to your assets folder with the new filename
-const STATIC_CV = "/assets/CV_Abhishek_Tiwari_2.pdf"; 
+// THE FIX: Try the absolute root path first
+const STATIC_CV = "/CV_Abhishek_Tiwari_2.pdf"; 
 const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`;
 
 export function FacultyCV() {
@@ -31,7 +31,7 @@ export function FacultyCV() {
         setPdfSrc(STATIC_CV);
         setLoading(false);
       }
-    }, 3000); // Shortened to 3 seconds for a snappier feel
+    }, 2000);
     return () => clearTimeout(t);
   }, [loading]);
 
