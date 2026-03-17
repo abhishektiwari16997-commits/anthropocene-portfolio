@@ -304,22 +304,7 @@ export function FacultyLanding() {
             margin: 0,
           }}
         >
-          © {new Date().getFullYear()}. Built with ♥ using{" "}
-          <a
-            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
-              typeof window !== "undefined" ? window.location.hostname : "",
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: "rgba(229,224,216,0.3)",
-              textDecoration: "none",
-              pointerEvents: "auto",
-              cursor: "none",
-            }}
-          >
-            caffeine.ai
-          </a>
+          © 2026. Abhishek Tiwari
         </p>
       </div>
     </div>
