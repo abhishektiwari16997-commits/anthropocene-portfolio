@@ -3,7 +3,10 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { FacultySubNav } from "../components/FacultySubNav";
 import { useActor } from "../hooks/useActor";
 
-// THE ABSOLUTE FIX: Matches your exact GitHub sidebar: frontend/public/assets/uploads/cv.pdf
+/** * FINAL PATH ANALYSIS: 
+ * Based on repo structure: frontend/public/assets/uploads/cv.pdf
+ * The web-accessible URL is: /assets/uploads/cv.pdf
+ */
 const STATIC_CV = "/assets/uploads/cv.pdf"; 
 const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`;
 
@@ -17,6 +20,7 @@ export function FacultyCV() {
     actor
       .getCvPdf()
       .then((data) => {
+        // Fallback to STATIC_CV if backend data is missing
         setPdfSrc(data?.trim() ? data : STATIC_CV);
       })
       .catch(() => {
@@ -31,7 +35,7 @@ export function FacultyCV() {
         setPdfSrc(STATIC_CV);
         setLoading(false);
       }
-    }, 2000);
+    }, 2500); 
     return () => clearTimeout(t);
   }, [loading]);
 
@@ -69,20 +73,20 @@ export function FacultyCV() {
           </p>
         </div>
       ) : (
-        <embed
-          src={pdfSrc ?? STATIC_CV}
-          type="application/pdf"
-          title="Curriculum Vitae — Abhishek Tiwari"
-          style={{
-            flex: 1,
-            width: "100%",
-            height: "calc(100dvh - 120px)",
-            border: "none",
-            display: "block",
-            position: "relative",
-            zIndex: 5,
-          }}
-        />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <embed
+            src={pdfSrc ?? STATIC_CV}
+            type="application/pdf"
+            title="Curriculum Vitae — Abhishek Tiwari"
+            style={{
+              flex: 1,
+              width: "100%",
+              height: "calc(100dvh - 120px)",
+              border: "none",
+              zIndex: 5,
+            }}
+          />
+        </div>
       )}
     </div>
   );
