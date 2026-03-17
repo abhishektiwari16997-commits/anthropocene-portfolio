@@ -3,10 +3,7 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { FacultySubNav } from "../components/FacultySubNav";
 import { useActor } from "../hooks/useActor";
 
-/** * FINAL PATH ANALYSIS: 
- * Based on repo structure: frontend/public/assets/uploads/cv.pdf
- * The web-accessible URL is: /assets/uploads/cv.pdf
- */
+// THE ABSOLUTE PATH: Matches frontend/public/assets/uploads/cv.pdf
 const STATIC_CV = "/assets/uploads/cv.pdf"; 
 const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`;
 
@@ -20,7 +17,7 @@ export function FacultyCV() {
     actor
       .getCvPdf()
       .then((data) => {
-        // Fallback to STATIC_CV if backend data is missing
+        // Fallback to our verified static path if backend is empty
         setPdfSrc(data?.trim() ? data : STATIC_CV);
       })
       .catch(() => {
@@ -29,6 +26,7 @@ export function FacultyCV() {
       .finally(() => setLoading(false));
   }, [actor]);
 
+  // Fallback timeout: ensures the PDF shows even if the backend connection hangs
   useEffect(() => {
     const t = setTimeout(() => {
       if (loading) {
