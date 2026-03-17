@@ -3,7 +3,8 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { FacultySubNav } from "../components/FacultySubNav";
 import { useActor } from "../hooks/useActor";
 
-const STATIC_CV = "/assets/uploads/CV_Abhishek-Tiwari-2-1.pdf";
+// FIX: Updated the path to match your folder structure
+const STATIC_CV = "/assets/CV_Abhishek-Tiwari-2-1.pdf"; 
 const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`;
 
 export function FacultyCV() {
@@ -16,6 +17,7 @@ export function FacultyCV() {
     actor
       .getCvPdf()
       .then((data) => {
+        // If the backend has a custom PDF string, use it; otherwise, use our static file
         setPdfSrc(data?.trim() ? data : STATIC_CV);
       })
       .catch(() => {
@@ -81,7 +83,6 @@ export function FacultyCV() {
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               color: "#8C3A3A",
-              animation: "pulse 2s ease-in-out infinite",
             }}
           >
             Loading CV...
