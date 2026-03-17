@@ -3,8 +3,8 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { FacultySubNav } from "../components/FacultySubNav";
 import { useActor } from "../hooks/useActor";
 
-// FIX: Updated to match your exact filename with the space
-const STATIC_CV = "/assets/CV_Abhishek_Tiwari-2.pdf"; 
+// THE FIX: Pointing exactly to your assets folder with the new filename
+const STATIC_CV = "/assets/CV_Abhishek_Tiwari_2.pdf"; 
 const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`;
 
 export function FacultyCV() {
@@ -31,13 +31,12 @@ export function FacultyCV() {
         setPdfSrc(STATIC_CV);
         setLoading(false);
       }
-    }, 4000);
+    }, 3000); // Shortened to 3 seconds for a snappier feel
     return () => clearTimeout(t);
   }, [loading]);
 
   return (
     <div
-      data-ocid="cv.page"
       style={{
         position: "relative",
         width: "100%",
@@ -64,22 +63,8 @@ export function FacultyCV() {
       <FacultySubNav />
 
       {loading ? (
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: '"JetBrains Mono", monospace',
-              fontSize: "10px",
-              letterSpacing: "0.3em",
-              color: "#8C3A3A",
-            }}
-          >
+        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <p style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: "10px", letterSpacing: "0.3em", color: "#8C3A3A" }}>
             Loading CV...
           </p>
         </div>
@@ -93,7 +78,6 @@ export function FacultyCV() {
             width: "100%",
             height: "calc(100dvh - 120px)",
             border: "none",
-            position: "relative",
             zIndex: 5,
           }}
         />
