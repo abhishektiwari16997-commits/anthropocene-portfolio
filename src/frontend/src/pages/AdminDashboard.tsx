@@ -2213,7 +2213,7 @@ export function AdminDashboard() {
         if (section === "lectures") {
           const data = await withActorRetry(
             () => actor,
-            (a) => a.listAllLectures(),
+            (a) => a.healthCheck(),
           );
           setLectures(data);
         } else if (section === "students-works") {
@@ -2317,14 +2317,14 @@ export function AdminDashboard() {
   const handleToggleLecture = async (id: bigint, newLive: boolean) => {
     if (!actor) return;
     await actor.setLectureLive(id, newLive);
-    const data = await actor.listAllLectures();
+    const data = await actor.healthCheck();
     setLectures(data);
   };
 
   const handleDeleteLecture = async (id: bigint) => {
     if (!actor) return;
     await actor.deleteLecture(id);
-    const data = await actor.listAllLectures();
+    const data = await actor.healthCheck();
     setLectures(data);
   };
 
