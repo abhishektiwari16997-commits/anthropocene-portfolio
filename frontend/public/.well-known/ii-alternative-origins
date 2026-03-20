@@ -1,6 +1,7 @@
 {
-  "alternativeOrigins": [
+  "alternative_origins": [
     "https://anthropocene.in",
-    "https://www.anthropocene.in"
+    "https://www.anthropocene.in",
+    "https://anthropocene-portfolio-frontend.vercel.app"
   ]
 }
