@@ -6,15 +6,16 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { useCursor } from "../context/CursorContext";
 import { getBackend } from "../utils/getBackend";
 
+// Correct path for Vite/Vercel builds
 const music = "/assets/oceanframemusic-romantic-video-483626.mp3";
 
 // ─── Artist Statement Text ────────────────────────────────────────────────────
 
 const PARAGRAPH_1 =
-  "When asked where I belong, I have no simple answer. I was born in Uttar Pradesh, have deep ties to Chandigarh, and now live in Mukkam, Kerala, where I am often viewed as a \u201cNorth Indian\u201d outsider. My practice is rooted in this persistent state of in-betweenness\u2014the everyday ache of missing home while migrating to build independence. This personal sense of displacement mirrors the physical destruction happening in my immediate surroundings, where the natural landscape is being violently reshaped by illegal stone quarries. Deeply inspired by Andreas Huyssen\u2019s writings in Present Pasts on how we construct memory and space, my work exists at the intersection of human migration and the ecological shifting of the earth. I navigate these themes by taking on the persona of the \u201cAnthropocene,\u201d conducting body-based performances and hosting open discussions with local residents and migrant workers. My practice is highly participatory; the memories, phrases, and thoughts shared by the community become the very foundation of my art.";
+  "When asked where I belong, I have no simple answer. I was born in Uttar Pradesh, have deep ties to Chandigarh, and now live in Mukkam, Kerala, where I am often viewed as a “North Indian” outsider. My practice is rooted in this persistent state of in-betweenness—the everyday ache of missing home while migrating to build independence. This personal sense of displacement mirrors the physical destruction happening in my immediate surroundings, where the natural landscape is being violently reshaped by illegal stone quarries. Deeply inspired by Andreas Huyssen’s writings in Present Pasts on how we construct memory and space, my work exists at the intersection of human migration and the ecological shifting of the earth. I navigate these themes by taking on the persona of the “Anthropocene,” conducting body-based performances and hosting open discussions with local residents and migrant workers. My practice is highly participatory; the memories, phrases, and thoughts shared by the community become the very foundation of my art.";
 
 const PARAGRAPH_2 =
-  "Through an interdisciplinary approach of oil painting, printmaking, and performance, I translate these fragile conversations into tangible forms, as seen in the works submitted for this application. One piece juxtaposes my childhood memories of playing stapu on quiet, community-owned roads with today\u2019s hyper-capitalist reality in the Malappuram hills, where remote forest roads are engineered solely for heavy quarry trucks. Another work grounds this ecological violence in intimate human experience, highlighting a migrant quarry worker who spends his solitary Sundays buying weekly groceries, deeply missing his young daughter, Pari, back home. The submitted oil paintings, executed in an impressionistic style to capture the fleeting nature of memory, carry titles that are direct quotes from the people I speak with. Phrases like \u201cAre we drilling into the mountain, or just ourselves?\u201d, \u201cMaking a house by breaking a home,\u201d \u201cThere is no shoulder where I can rest my head,\u201d and \u201cMy village is still here,\u201d reflect the shared heartbreak of my surroundings. Together, these works question our shifting societal priorities and what it means to belong to a place that is constantly being erased.";
+  "Through an interdisciplinary approach of oil painting, printmaking, and performance, I translate these fragile conversations into tangible forms, as seen in the works submitted for this application. One piece juxtaposes my childhood memories of playing stapu on quiet, community-owned roads with today’s hyper-capitalist reality in the Malappuram hills, where remote forest roads are engineered solely for heavy quarry trucks. Another work grounds this ecological violence in intimate human experience, highlighting a migrant quarry worker who spends his solitary Sundays buying weekly groceries, deeply missing his young daughter, Pari, back home. The submitted oil paintings, executed in an impressionistic style to capture the fleeting nature of memory, carry titles that are direct quotes from the people I speak with. Phrases like “Are we drilling into the mountain, or just ourselves?”, “Making a house by breaking a home,” “There is no shoulder where I can rest my head,” and “My village is still here,” reflect the shared heartbreak of my surroundings. Together, these works question our shifting societal priorities and what it means to belong to a place that is constantly being erased.";
 
 // ─── WordSplit: word-by-word hover spans ──────────────────────────────────────
 
@@ -24,7 +25,6 @@ function WordSplit({ text }: { text: string }) {
     <>
       {words.map((word, i) => (
         <motion.span
-          // biome-ignore lint/suspicious/noArrayIndexKey: static text, order never changes
           key={i}
           style={{
             display: "inline-block",
@@ -66,7 +66,6 @@ function ArtistStatement() {
         padding: "7rem 0 5rem",
       }}
     >
-      {/* Top rule */}
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
@@ -82,7 +81,6 @@ function ArtistStatement() {
         }}
       />
 
-      {/* Card */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -98,7 +96,6 @@ function ArtistStatement() {
           zIndex: 2,
         }}
       >
-        {/* Heading */}
         <h2
           style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -114,7 +111,6 @@ function ArtistStatement() {
           Artist Statement
         </h2>
 
-        {/* Rule below heading */}
         <div
           style={{
             width: "100%",
@@ -124,7 +120,6 @@ function ArtistStatement() {
           }}
         />
 
-        {/* Paragraph 1 */}
         <p
           style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -138,7 +133,6 @@ function ArtistStatement() {
           <WordSplit text={PARAGRAPH_1} />
         </p>
 
-        {/* Paragraph 2 */}
         <p
           style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -153,7 +147,6 @@ function ArtistStatement() {
         </p>
       </motion.div>
 
-      {/* Bottom rule */}
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
@@ -169,7 +162,6 @@ function ArtistStatement() {
         }}
       />
 
-      {/* Scroll cue */}
       <motion.div
         animate={{ y: [0, 6, 0] }}
         transition={{
@@ -253,7 +245,6 @@ function GalleryItem({ item, index }: GalleryItemProps) {
           maxWidth: "1400px",
         }}
       >
-        {/* Image Container — full width on mobile, flex-1 on desktop */}
         <motion.div
           style={{
             flex: "1 1 auto",
@@ -280,7 +271,6 @@ function GalleryItem({ item, index }: GalleryItemProps) {
           />
         </motion.div>
 
-        {/* Title Panel — below image on mobile, side panel on desktop */}
         <div
           style={{
             width: isMobile ? "100%" : "25%",
@@ -406,7 +396,6 @@ function AudioButton({ isMuted, onToggle }: AudioButtonProps) {
       }}
     >
       {isMuted ? (
-        /* Speaker muted icon */
         <svg
           width="16"
           height="16"
@@ -423,7 +412,6 @@ function AudioButton({ isMuted, onToggle }: AudioButtonProps) {
           <line x1="17" y1="9" x2="23" y2="15" />
         </svg>
       ) : (
-        /* Speaker playing icon */
         <svg
           width="16"
           height="16"
@@ -464,13 +452,11 @@ export function ArtPractice() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Suppress default cursor label on this page
   useEffect(() => {
     setSuppressDefaultLabel(true);
     return () => setSuppressDefaultLabel(false);
   }, [setSuppressDefaultLabel]);
 
-  // Smooth scroll — CSS-based geological momentum feel
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -480,7 +466,6 @@ export function ArtPractice() {
     };
   }, []);
 
-  // Fetch live artworks from backend
   useEffect(() => {
     getBackend()
       .then((b) => b.listLiveArtItems())
@@ -489,28 +474,24 @@ export function ArtPractice() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  // Audio: autoplay attempt + fallback on first interaction
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Gallery volume — atmospheric but audible
     audio.volume = 0.09;
 
     const tryPlay = () => {
-      if (hasStartedRef.current) return;
+      if (hasStartedRef.current || !audio) return;
       audio
         .play()
         .then(() => {
           hasStartedRef.current = true;
         })
-        .catch(() => {
-          // autoplay blocked — wait for user interaction
-        });
+        .catch(() => {});
     };
 
     const onInteraction = () => {
-      if (hasStartedRef.current) return;
+      if (hasStartedRef.current || !audio) return;
       audio
         .play()
         .then(() => {
@@ -539,7 +520,7 @@ export function ArtPractice() {
     if (!audio) return;
     audio.muted = !audio.muted;
     setIsMuted(audio.muted);
-    // If unmuting but play never started, start now
+    
     if (!audio.muted && !hasStartedRef.current) {
       audio
         .play()
@@ -566,17 +547,14 @@ export function ArtPractice() {
         scrollbarColor: "rgba(140,58,58,0.15) transparent",
       }}
     >
-      {/* ── Ambient audio (hidden) ── */}
-      {/* biome-ignore lint/a11y/useMediaCaption: ambient instrumental music, no dialogue */}
       <audio
         ref={audioRef}
-        src={galleryAudio}
+        src={music}
         loop
         preload="auto"
         style={{ display: "none" }}
       />
 
-      {/* ── Fixed Navigation Overlay ── */}
       <div
         style={{
           position: "fixed",
@@ -585,12 +563,10 @@ export function ArtPractice() {
           pointerEvents: "none",
         }}
       >
-        {/* Top-left: Anthropocene anchor */}
         <div style={{ pointerEvents: "auto" }}>
           <AnthropoceneAnchor />
         </div>
 
-        {/* Top-right: Nav links — hidden on small mobile to prevent overflow */}
         <div
           style={{
             position: "fixed",
@@ -609,12 +585,7 @@ export function ArtPractice() {
           ].map(({ label, to }) => (
             <Link
               key={to}
-              to={
-                to as
-                  | "/art-practice"
-                  | "/faculty/lectures"
-                  | "/faculty/students-works"
-              }
+              to={to as any}
               style={{
                 fontFamily: "Inter, system-ui, sans-serif",
                 fontSize: "10px",
@@ -639,10 +610,8 @@ export function ArtPractice() {
         </div>
       </div>
 
-      {/* ── Artist Statement (first section) ── */}
       <ArtistStatement />
 
-      {/* ── Gallery sections or loading/empty state ── */}
       {isLoading ? (
         <section
           style={{
@@ -677,7 +646,6 @@ export function ArtPractice() {
         ))
       )}
 
-      {/* ── Footer ── */}
       <div
         style={{
           padding: "3rem 0 2rem",
@@ -700,7 +668,6 @@ export function ArtPractice() {
         </p>
       </div>
 
-      {/* ── Mute/Unmute audio button ── */}
       <AudioButton isMuted={isMuted} onToggle={handleToggleMute} />
     </div>
   );
