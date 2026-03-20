@@ -6,8 +6,8 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { useCursor } from "../context/CursorContext";
 import { getBackend } from "../utils/getBackend";
 
-// Correct path for Vite/Vercel builds
-const music = "/assets/oceanframemusic-romantic-video-483626.mp3";
+
+const music = "/assets/bg-music.mp3";
 
 // ─── Artist Statement Text ────────────────────────────────────────────────────
 
