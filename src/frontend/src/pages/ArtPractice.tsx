@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import galleryAudio from "/assets/oceanframemusic-romantic-video-483626.mp3";
 import type { ArtPortfolioItem } from "../backend.d";
 import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { useCursor } from "../context/CursorContext";
 import { getBackend } from "../utils/getBackend";
+
+const music = "/assets/oceanframemusic-romantic-video-483626.mp3";
 
 // ─── Artist Statement Text ────────────────────────────────────────────────────
 
