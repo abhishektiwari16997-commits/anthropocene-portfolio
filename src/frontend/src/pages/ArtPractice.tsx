@@ -6,9 +6,6 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { useCursor } from "../context/CursorContext";
 import { getBackend } from "../utils/getBackend";
 
-// Direct relative import - This ensures Vite bundles the music correctly
-import galleryMusic from "../../public/assets/bg-music.mp3";
-
 // ─── Artist Statement Text ────────────────────────────────────────────────────
 
 const PARAGRAPH_1 =
@@ -508,10 +505,12 @@ export function ArtPractice() {
         scrollbarColor: "rgba(140,58,58,0.15) transparent",
       }}
     >
-      {/* Reference the imported audio file directly */}
+      {/* This is the "Static" source. 
+        It looks in src/frontend/public/assets/bg-music.mp3 
+      */}
       <audio
         ref={audioRef}
-        src={galleryMusic}
+        src="/assets/bg-music.mp3"
         loop
         preload="auto"
         style={{ display: "none" }}
