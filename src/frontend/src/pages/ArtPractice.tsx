@@ -6,8 +6,8 @@ import { AnthropoceneAnchor } from "../components/AnthropoceneAnchor";
 import { useCursor } from "../context/CursorContext";
 import { getBackend } from "../utils/getBackend";
 
-
-const music = "/assets/bg-music.mp3";
+// Direct relative import - This ensures Vite bundles the music correctly
+import galleryMusic from "../../public/assets/bg-music.mp3";
 
 // ─── Artist Statement Text ────────────────────────────────────────────────────
 
@@ -396,33 +396,13 @@ function AudioButton({ isMuted, onToggle }: AudioButtonProps) {
       }}
     >
       {isMuted ? (
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke={isHovered ? "rgba(140,58,58,0.9)" : "rgba(229,224,216,0.5)"}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={isHovered ? "rgba(140,58,58,0.9)" : "rgba(229,224,216,0.5)"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
           <line x1="23" y1="9" x2="17" y2="15" />
           <line x1="17" y1="9" x2="23" y2="15" />
         </svg>
       ) : (
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke={isHovered ? "rgba(140,58,58,0.9)" : "rgba(229,224,216,0.5)"}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={isHovered ? "rgba(140,58,58,0.9)" : "rgba(229,224,216,0.5)"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
           <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
@@ -461,9 +441,7 @@ export function ArtPractice() {
     const el = containerRef.current;
     if (!el) return;
     el.style.scrollBehavior = "smooth";
-    return () => {
-      if (el) el.style.scrollBehavior = "";
-    };
+    return () => { if (el) el.style.scrollBehavior = ""; };
   }, []);
 
   useEffect(() => {
@@ -477,27 +455,16 @@ export function ArtPractice() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-
     audio.volume = 0.09;
 
     const tryPlay = () => {
       if (hasStartedRef.current || !audio) return;
-      audio
-        .play()
-        .then(() => {
-          hasStartedRef.current = true;
-        })
-        .catch(() => {});
+      audio.play().then(() => { hasStartedRef.current = true; }).catch(() => {});
     };
 
     const onInteraction = () => {
       if (hasStartedRef.current || !audio) return;
-      audio
-        .play()
-        .then(() => {
-          hasStartedRef.current = true;
-        })
-        .catch(() => {});
+      audio.play().then(() => { hasStartedRef.current = true; }).catch(() => {});
       document.removeEventListener("click", onInteraction);
       document.removeEventListener("touchstart", onInteraction);
       document.removeEventListener("keydown", onInteraction);
@@ -520,14 +487,8 @@ export function ArtPractice() {
     if (!audio) return;
     audio.muted = !audio.muted;
     setIsMuted(audio.muted);
-    
     if (!audio.muted && !hasStartedRef.current) {
-      audio
-        .play()
-        .then(() => {
-          hasStartedRef.current = true;
-        })
-        .catch(() => {});
+      audio.play().then(() => { hasStartedRef.current = true; }).catch(() => {});
     }
   };
 
@@ -547,63 +508,26 @@ export function ArtPractice() {
         scrollbarColor: "rgba(140,58,58,0.15) transparent",
       }}
     >
+      {/* Reference the imported audio file directly */}
       <audio
         ref={audioRef}
-        src={music}
+        src={galleryMusic}
         loop
         preload="auto"
         style={{ display: "none" }}
       />
 
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 100,
-          pointerEvents: "none",
-        }}
-      >
+      <div style={{ position: "fixed", inset: 0, zIndex: 100, pointerEvents: "none" }}>
         <div style={{ pointerEvents: "auto" }}>
           <AnthropoceneAnchor />
         </div>
-
-        <div
-          style={{
-            position: "fixed",
-            top: "2rem",
-            right: "2rem",
-            display: isNavMobile ? "none" : "flex",
-            gap: "2rem",
-            alignItems: "center",
-            pointerEvents: "auto",
-          }}
-        >
+        <div style={{ position: "fixed", top: "2rem", right: "2rem", display: isNavMobile ? "none" : "flex", gap: "2rem", alignItems: "center", pointerEvents: "auto" }}>
           {[
             { label: "Art Practice", to: "/art-practice" },
             { label: "Lectures", to: "/faculty/lectures" },
             { label: "Student Work", to: "/faculty/students-works" },
           ].map(({ label, to }) => (
-            <Link
-              key={to}
-              to={to as any}
-              style={{
-                fontFamily: "Inter, system-ui, sans-serif",
-                fontSize: "10px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(229,224,216,0.75)",
-                textDecoration: "none",
-                cursor: "none",
-                transition: "color 0.25s ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color = "#8C3A3A";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color =
-                  "rgba(229,224,216,0.75)";
-              }}
-            >
+            <Link key={to} to={to as any} style={{ fontFamily: "Inter, system-ui, sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(229,224,216,0.75)", textDecoration: "none", cursor: "none", transition: "color 0.25s ease" }} onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#8C3A3A"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(229,224,216,0.75)"; }}>
               {label}
             </Link>
           ))}
@@ -613,30 +537,8 @@ export function ArtPractice() {
       <ArtistStatement />
 
       {isLoading ? (
-        <section
-          style={{
-            width: "100%",
-            minHeight: "100vh",
-            background: "#000000",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <motion.div
-            data-ocid="art.loading_state"
-            animate={{ opacity: [0.2, 0.6, 0.2] }}
-            transition={{
-              duration: 2,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-            style={{
-              width: "60px",
-              height: "1px",
-              background: "rgba(140,58,58,0.5)",
-            }}
-          />
+        <section style={{ width: "100%", minHeight: "100vh", background: "#000000", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <motion.div data-ocid="art.loading_state" animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }} style={{ width: "60px", height: "1px", background: "rgba(140,58,58,0.5)" }} />
         </section>
       ) : showEmpty ? (
         placeholders.map((i) => <EmptyGalleryPlaceholder key={i} index={i} />)
@@ -646,24 +548,8 @@ export function ArtPractice() {
         ))
       )}
 
-      <div
-        style={{
-          padding: "3rem 0 2rem",
-          background: "#000000",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "Inter, system-ui, sans-serif",
-            fontSize: "10px",
-            letterSpacing: "0.15em",
-            color: "rgba(229,224,216,0.18)",
-            textAlign: "center",
-            margin: 0,
-          }}
-        >
+      <div style={{ padding: "3rem 0 2rem", background: "#000000", display: "flex", justifyContent: "center" }}>
+        <p style={{ fontFamily: "Inter, system-ui, sans-serif", fontSize: "10px", letterSpacing: "0.15em", color: "rgba(229,224,216,0.18)", textAlign: "center", margin: 0 }}>
           © 2026. Abhishek Tiwari
         </p>
       </div>
